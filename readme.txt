@@ -47,8 +47,6 @@ Add the GitHub repository information to your plugin's header.
 * Added self-update functionality
 * Updated plugin URI to point to GitHub repository
 
-= 1.0.1 =
-
 = 1.0.0 =
 * Initial release
 

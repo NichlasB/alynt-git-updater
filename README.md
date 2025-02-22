@@ -35,6 +35,11 @@ To make a plugin updatable via GitHub:
 
 ## Changelog
 
+### 1.0.2 - 2025-02-22
+* Added Settings link to plugin page
+* Fixed duplicate changelog links issue
+* Added GitHub repository information to plugin header
+
 ### 1.0.1 - 2025-02-22
 - Added self-update functionality
 - Updated plugin URI to point to GitHub repository
