@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Alynt Git Updater
- * Plugin URI: https://github.com/your-username/alynt-git-updater
+ * Plugin URI: https://github.com/NichlasB/alynt-git-updater
  * Description: Enables automatic updates for plugins hosted on GitHub.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Alynt
  * Author URI: https://alynt.com
  * License: GPL v2 or later
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants.
-define('ALYNT_GIT_VERSION', '1.0.0');
+define('ALYNT_GIT_VERSION', '1.0.1');
 define('ALYNT_GIT_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('ALYNT_GIT_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -39,6 +39,9 @@ function alynt_git_init() {
 
     // Initialize webhook handler
     new \Alynt_Git_Updater\Webhook();
+    
+    // Initialize self-updater
+    new \Alynt_Git_Updater\Updater(__FILE__);
 }
 add_action('plugins_loaded', 'alynt_git_init');
 

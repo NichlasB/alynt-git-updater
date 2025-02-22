@@ -3,7 +3,7 @@ Contributors: your_wp_username
 Tags: github, updates, plugin-updates
 Requires at least: 5.0
 Tested up to: 6.7.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -37,6 +37,12 @@ Yes, but you'll need to configure appropriate authentication.
 Add the GitHub repository information to your plugin's header.
 
 == Changelog ==
+
+### 1.0.1 - 2025-02-22
+* Added self-update functionality
+* Updated plugin URI to point to GitHub repository
+
+### 1.0.0 - 2025-02-22
 
 = 1.0.0 =
 * Initial release
