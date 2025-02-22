@@ -1,0 +1,65 @@
+# WordPress Core
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+wp-content/backups/
+wp-content/themes/twenty*/
+index.php
+license.txt
+readme.html
+wp-*.php
+xmlrpc.php
+
+# Configuration
+wp-config.php
+.htaccess
+
+# System and IDE files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# Node dependencies
+node_modules/
+
+# Log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Compiled and packaged files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# WordPress generated files
+sitemap.xml
+sitemap.xml.gz
+
+# Keep these files
+# (no need for ! since we're not using broad ignore patterns)
+#.gitignore
+.editorconfig
+#README.md
+CHANGELOG.md
+composer.json
