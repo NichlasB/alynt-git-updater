@@ -87,6 +87,7 @@ class Updater {
         add_filter('upgrader_pre_download', [$this, 'pre_download'], 10, 3);
         add_filter('upgrader_source_selection', [$this, 'source_selection'], 10, 4);
         add_filter('plugin_row_meta', [$this, 'modify_plugin_row_meta'], 10, 2);
+        add_filter('plugin_action_links', [$this, 'add_plugin_action_links'], 10, 2);
     }
 
     /**
@@ -296,19 +297,47 @@ class Updater {
         if ($file !== $this->basename) {
             return $links;
         }
-
-        // Find and replace the "View details" link
+    
+        // Add changelog link
+        $changelog_url = sprintf('https://github.com/%s/%s?tab=readme-ov-file#changelog',
+            $this->username,
+            $this->repository
+        );
+        
+        // Replace View details link if it exists, otherwise add new changelog link
+        $found = false;
         foreach ($links as $key => $link) {
             if (strpos($link, 'plugin-install.php?tab=plugin-information') !== false) {
-                $changelog_url = sprintf('https://github.com/%s/%s?tab=readme-ov-file#changelog',
-                    $this->username,
-                    $this->repository
-                );
                 $links[$key] = sprintf('<a href="%s" target="_blank">Changelog</a>', esc_url($changelog_url));
+                $found = true;
                 break;
             }
         }
-
+        
+        // Only add new link if we didn't replace an existing one
+        if (!$found) {
+            $links[] = sprintf('<a href="%s" target="_blank">Changelog</a>', esc_url($changelog_url));
+        }
+    
         return $links;
     }
+
+    /**
+     * Add settings link to plugin actions
+     *
+     * @param array $actions Plugin action links
+     * @param string $plugin_file Plugin file path
+     * @return array Modified action links
+     */
+    public function add_plugin_action_links($actions, $plugin_file) {
+        if ($plugin_file === $this->basename) {
+            $settings_link = sprintf(
+                '<a href="%s">Settings</a>',
+                esc_url(admin_url('options-general.php?page=alynt-git-updater'))
+            );
+            array_unshift($actions, $settings_link);
+        }
+        return $actions;
+    }
+
 }
