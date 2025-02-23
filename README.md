@@ -35,6 +35,10 @@ To make a plugin updatable via GitHub:
 
 ## Changelog
 
+### 1.0.3 - 2025-02-23
+* Improved plugin meta handling for better UI consistency
+* Added helper class for managing plugin UI elements
+
 ### 1.0.2 - 2025-02-22
 * Added Settings link to plugin page
 * Fixed duplicate changelog links issue

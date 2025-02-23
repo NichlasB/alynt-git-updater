@@ -3,7 +3,7 @@
  * Plugin Name: Alynt Git Updater
  * Plugin URI: https://github.com/NichlasB/alynt-git-updater
  * Description: Enables automatic updates for plugins hosted on GitHub.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Alynt
  * Author URI: https://alynt.com
  * License: GPL v2 or later
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants.
-define('ALYNT_GIT_VERSION', '1.0.2');
+define('ALYNT_GIT_VERSION', '1.0.3');
 define('ALYNT_GIT_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('ALYNT_GIT_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -43,6 +43,20 @@ function alynt_git_init() {
     new \Alynt_Git_Updater\Webhook();
 }
 add_action('plugins_loaded', 'alynt_git_init');
+
+add_filter('plugin_action_links', 'alynt_git_remove_duplicate_settings_link', 20, 4);
+function alynt_git_remove_duplicate_settings_link($actions, $plugin_file, $plugin_data, $context) {
+    // Check if this is the Custom Login Manager plugin
+    if ($plugin_file === 'wp-custom-login-manager/wp-custom-login-manager.php') {
+        // Remove the Alynt Git Updater settings link
+        foreach ($actions as $key => $action) {
+            if (strpos($action, 'options-general.php?page=alynt-git-updater') !== false) {
+                unset($actions[$key]);
+            }
+        }
+    }
+    return $actions;
+}
 
 /**
  * Initialize updater for plugins with GitHub headers
